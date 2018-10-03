@@ -1,7 +1,25 @@
 ---
+- hosts: adc
+  connection: local
 
-- name:
+  vars:
+   provider:
+     server: xxx.xxx.xxx.xxx
+     user: admin
+     password: admin
+     validate_certs: no
 
+  tasks:
+    
+    - name: Gen QK
+      bigip_qkview: 
+       provider: "{{ provider }}"
+       asm_request_log: no
+       exclude:
+        - audit
+        - secure
+       dest: ~/support.qkview
+      delegate_to: localhost
 
-
-- name:
+    - name: Upload qkview to iHealth
+      script: qk.py
