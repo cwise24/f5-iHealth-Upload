@@ -4,7 +4,7 @@ import json, cookielib, requests
 
 url='https://api.f5.com/auth/pub/sso/login/ihealth-api'
 headers = {'content-type': 'application/json', 'user-agent':'FSE_QKapi'}
-payload = {'user_id':'c.wise@f5.com', 'user_secret':'S@tcom2$7'}
+payload = {'user_id':'<user id>', 'user_secret':'<password>'}
 session = requests.session()
 r_token = session.post(url, headers=headers, data=json.dumps(payload))
 
