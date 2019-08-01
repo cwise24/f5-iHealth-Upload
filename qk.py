@@ -2,7 +2,7 @@
 """Import Modules for Qkview"""
 import os
 import json
-import http.cookiejar
+#import http.cookiejar for python3
 import requests
 
 url = 'https://api.f5.com/auth/pub/sso/login/ihealth-api'
@@ -13,11 +13,11 @@ r_token = session.post(url, headers=headers, data=json.dumps(payload))
 
 print "Auth Token ", r_token.status_code
 
-for f in os.listdir('.'):
+for f in os.listdir('roles/qkview/files'):
     if f.endswitch('.qkview'):
         url1 = 'https://ihealth-api.f5.com/qkview-analyzer/api/qkviews'
         headers1 = {'Accept': 'application/vnd.f5.ihealth.api', 'user-agent': 'FSE_QKapi'}
         payload1 = {'visible_in_gui': 'True'}
-        fvar = {'qkview': open( f, 'rb')}
+        fvar = {'qkview': open('roles/qkview/files/'+ f, 'rb')}
         r_Up = session.post(url1, headers=headers1, files=fvar, data=payload1)
         print "Upload Status ",r_Up.status_code
