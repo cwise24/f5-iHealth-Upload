@@ -1,6 +1,7 @@
 # f5-iHealth-Upload
 Python script (`qk.py`) will upload multiple files from directory <br />
-The `qkvw.yml` play will use host vars from Ansible to get the alias name of the target, in this example *BigIp13* 
+The `qkvw.yml` play will use host vars from Ansible and [F5 DevCentral's Galaxy Role](https://galaxy.ansible.com/f5devcentral/f5ansible) to get the alias name of the target, in this example *BigIp13* 
+Example Inventory:
 ```
 [adc]
 bigip13    ansible_host=192.168.1.245
