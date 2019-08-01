@@ -1,0 +1,32 @@
+---
+
+- hosts: adc
+  connection: local
+
+  vars:
+    provider:
+      server: 10.1.1.245
+      user: admin
+      password: admin
+      validate_certs: no
+
+  roles:
+    - role: f5devcentral.f5ansible
+  tasks:
+
+  - name: Generate Qkview
+    tags:
+      - qkview
+    bigip_qkview:
+      provider: "{{ provider }}"
+      asm_request_log: yes
+      exclude: 
+        - audit
+        - secure
+      filename: "{{ inventory_hostname + '.qkview' }}"
+      dest: ~/roles/qkview/files/{{ inventory_hostname + '.qkview' }}
+      force: yes 
+    delegate_to: localhost
+
+  - name: Qkview Up
+    script: ~/roles/qkview/files/qk.py
