@@ -16,7 +16,7 @@ r_token = session.post(url, headers=headers, data=json.dumps(payload))
 print "Auth Token ", r_token.status_code
 
 for f in os.listdir(dir_path):
-    if f.endswitch('.qkview'):
+    if f.endswith('.qkview'):
         url1 = 'https://ihealth-api.f5.com/qkview-analyzer/api/qkviews'
         headers1 = {'Accept': 'application/vnd.f5.ihealth.api', 'user-agent': 'FSE_QKapi'}
         payload1 = {'visible_in_gui': 'True'}
